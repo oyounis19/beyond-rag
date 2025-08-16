@@ -1,0 +1,3 @@
+json-repair
+PyPDF2
+langfuse==3.2.3
