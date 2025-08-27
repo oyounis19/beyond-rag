@@ -23,10 +23,10 @@ export const ConflictResolution: React.FC = () => {
     }
   };
 
-  const handleResolveSingle = async (conflictId: string) => {
+  const handleResolveSingle = async (conflictId: string, action: 'ignore' | 'supersede') => {
     setResolvingIds(prev => new Set([...prev, conflictId]));
     try {
-      await resolveConflict(conflictId, 'supersede');
+      await resolveConflict(conflictId, action);
       queryClient.invalidateQueries({ queryKey: ['conflicts'] });
       queryClient.invalidateQueries({ queryKey: ['documents'] });
     } catch (error) {
@@ -102,7 +102,7 @@ export const ConflictResolution: React.FC = () => {
                   <p><strong>Conflict ID:</strong> {conflict.id}</p>
                   <p><strong>New Chunk:</strong> {conflict.new_chunk_id}</p>
                   <p><strong>Existing Chunk:</strong> {conflict.existing_chunk_id}</p>
-                  <p><strong>Judged By:</strong><span className="uppercase">{conflict.judged_by}</span></p>
+                  <p><strong>Judged By:</strong> <span className="uppercase font-medium text-blue-600">{conflict.judged_by || 'unknown'}</span></p>
                   <p><strong>Similarity Score:</strong> {(conflict.score * 100).toFixed(1)}%</p>
                   {conflict.neighbor_sim && (
                     <p><strong>Neighbor Similarity:</strong> {(conflict.neighbor_sim * 100).toFixed(1)}%</p>
@@ -110,20 +110,37 @@ export const ConflictResolution: React.FC = () => {
                 </div>
               </div>
 
-              <button
-                onClick={() => handleResolveSingle(conflict.id)}
-                disabled={resolvingIds.has(conflict.id)}
-                className="ml-4 px-3 py-1 bg-green-600 text-white text-xs font-medium rounded-md hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {resolvingIds.has(conflict.id) ? (
-                  <div className="flex items-center space-x-1">
-                    <div className="w-3 h-3 border border-white border-t-transparent rounded-full animate-spin"></div>
-                    <span>Resolving...</span>
-                  </div>
-                ) : (
-                  '✅ Apply New'
-                )}
-              </button>
+              <div className="flex space-x-2">
+                <button
+                  onClick={() => handleResolveSingle(conflict.id, 'supersede')}
+                  disabled={resolvingIds.has(conflict.id)}
+                  className="px-3 py-1 bg-green-600 text-white text-xs font-medium rounded-md hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {resolvingIds.has(conflict.id) ? (
+                    <div className="flex items-center space-x-1">
+                      <div className="w-3 h-3 border border-white border-t-transparent rounded-full animate-spin"></div>
+                      <span>Resolving...</span>
+                    </div>
+                  ) : (
+                    '✅ Apply New'
+                  )}
+                </button>
+                
+                <button
+                  onClick={() => handleResolveSingle(conflict.id, 'ignore')}
+                  disabled={resolvingIds.has(conflict.id)}
+                  className="px-3 py-1 bg-red-600 text-white text-xs font-medium rounded-md hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {resolvingIds.has(conflict.id) ? (
+                    <div className="flex items-center space-x-1">
+                      <div className="w-3 h-3 border border-white border-t-transparent rounded-full animate-spin"></div>
+                      <span>Resolving...</span>
+                    </div>
+                  ) : (
+                    '❌ Discard New'
+                  )}
+                </button>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -147,7 +164,9 @@ export const ConflictResolution: React.FC = () => {
             </div>
 
             <div className="mt-3 text-xs text-gray-500">
-              <strong>Action:</strong> Accepting this will replace the existing content with the new version
+              <strong>Actions:</strong> 
+              <span className="text-green-600 ml-1">Apply New</span> replaces existing content with new content.
+              <span className="text-red-600 ml-2">Discard New</span> keeps existing content and removes new content.
             </div>
           </div>
         ))}

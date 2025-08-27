@@ -1,7 +1,7 @@
 services:
   api:
     build:
-      context: ./backend
+      context: ./src
     env_file:
       - .env
     environment:
@@ -14,7 +14,7 @@ services:
     develop:
       watch:
         - action: rebuild
-          path: ./backend/app
+          path: ./src/app
           target: /usr/src/app/app/
     depends_on:
       - redis
@@ -163,7 +163,6 @@ services:
       CLICKHOUSE_PASSWORD: clickhouse
     ports:
       - "127.0.0.1:8123:8123"
-      - "127.0.0.1:9000:9000"
     volumes:
       - chdata:/var/lib/clickhouse
 
