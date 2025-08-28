@@ -12,18 +12,18 @@ An end-to-end, self-hosted RAG system designed for intelligent document manageme
   <tr>
     <td>
     <p>Contradiction</p>
-    <img src="media/v1.png" alt="Image 3" width="350"/></td>
+    <img src="media/v1.png" alt="Image 3" width="500"/></td>
     <td>
     <p>Duplication</p>
-    <img src="media/v2.png" alt="Image 4" width="350"/></td>
+    <img src="media/v2.png" alt="Image 4" width="500"/></td>
   </tr>
   <tr>
     <td>
     <p>Conflict Analysis</p>
-    <img src="media/v3.png" alt="Image 1" width="350"/></td>
+    <img src="media/v3.png" alt="Image 1" width="500"/></td>
     <td>
     <p>Chat Interface</p>
-    <img src="media/chat.png" alt="Image 2" width="350"/></td>
+    <img src="media/chat.png" alt="Image 2" width="500"/></td>
   </tr>
 </table>
 
