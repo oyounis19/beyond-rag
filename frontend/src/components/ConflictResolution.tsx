@@ -103,7 +103,9 @@ export const ConflictResolution: React.FC = () => {
                   <p><strong>New Chunk:</strong> {conflict.new_chunk_id}</p>
                   <p><strong>Existing Chunk:</strong> {conflict.existing_chunk_id}</p>
                   <p><strong>Judged By:</strong> <span className="uppercase font-medium text-blue-600">{conflict.judged_by || 'unknown'}</span></p>
-                  <p><strong>Similarity Score:</strong> {(conflict.score * 100).toFixed(1)}%</p>
+                    {conflict.judged_by !== 'llm' && (
+                    <p><strong>Confidence Score:</strong> {(conflict.score * 100).toFixed(1)}%</p>
+                    )}
                   {conflict.neighbor_sim && (
                     <p><strong>Neighbor Similarity:</strong> {(conflict.neighbor_sim * 100).toFixed(1)}%</p>
                   )}
@@ -178,8 +180,8 @@ export const ConflictResolution: React.FC = () => {
           <div className="text-xs text-blue-800">
             <p><strong>About Conflict Detection:</strong></p>
             <p className="mt-1">
-              Our AI analyzes semantic similarity and detects contradictions between new and existing content.
-              Conflicts with similarity above 85% indicate potentially contradictory information that needs review.
+              Our AI analyzes semantic similarity and detects contradictions between new and existing content using NLI model and fall-back LLM.
+              Conflicts with NLI confidence above 95% indicate potentially contradictory information that needs review.
             </p>
           </div>
         </div>

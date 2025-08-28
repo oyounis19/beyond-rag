@@ -33,12 +33,12 @@ class Settings(BaseSettings):
 
     # Retrieval / Conflicts
     top_k_neighbors: int = 3
-    contradiction_score_threshold: float = 0.9
+    contradiction_score_threshold: float = 0.95
     dedup_similarity_threshold: float = 0.95
-    neutral_score_threshold: float = 0.9
+    neutral_score_threshold: float = 0.95
     
     # Chunking (Tokens)
-    chunk_size: int = 200
+    chunk_size: int = 100
     chunk_overlap: int = 25
 
     # Langfuse

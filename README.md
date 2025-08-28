@@ -4,6 +4,18 @@
 
 An end-to-end, self-hosted RAG system designed for intelligent document management with advanced **conflict detection**. This single-tenant system showcases sophisticated RAG capabilities including document contradiction detection, multiple LLM provider support, and comprehensive observability.
 
+### Screenshots
+
+**Conflict Detection Example**
+
+![Conflict Detection Example](/media/v1.png)
+
+![Conflict Detection Example 2](/media/v2.png)
+
+**Chat Interface Example**
+
+![Chat Interface Example](/media/chat.png)
+
 ### Key Features
 
 *   **Intelligent Document Processing**: Advanced document parsing with optional Docling support for PDFs, plus standard support for text, markdown, and Excel files.
@@ -12,18 +24,6 @@ An end-to-end, self-hosted RAG system designed for intelligent document manageme
 *   **Real-time Processing Status**: Visual feedback showing document processing stages: `parsing → chunking → embedding → conflict analysis`.
 *   **Interactive Chat Interface**: RAG-powered chat with your documents using your preferred LLM provider.
 *   **Comprehensive Observability**: Integrated with Langfuse for detailed tracing and analytics of all operations.
-<!-- *   **Evaluation Framework**: Ready for DeepEval integration to assess system performance and quality. -->
-
-### Demo Flow
-
-The system is designed to demonstrate a complete RAG workflow:
-
-1. **Document Upload**: Clean drag-and-drop interface with real-time processing status
-2. **Document Publish**: Start the publishing process to make the document available for search and retrieval
-3. **Conflict Detection**: Automatic identification of contradictions with visual comparison
-4. **Conflict Resolution**: Side-by-side comparison with individual or bulk resolution options
-5. **Knowledge Chat**: Intelligent conversation with your updated knowledge base
-6. **Observability**: Direct links to Langfuse traces for complete transparency
 
 ### System Components
 
@@ -75,4 +75,3 @@ Once the containers are running, you can access the services at the following en
 * **Langfuse UI**: [http://localhost:3000](http://localhost:3000)
 * **MinIO Console**: [http://localhost:9091](http://localhost:9091)
 * **Qdrant Console**: [http://localhost:6333/dashboard#/collections](http://localhost:6333/dashboard#/collections)
-
