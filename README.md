@@ -8,13 +8,24 @@ An end-to-end, self-hosted RAG system designed for intelligent document manageme
 
 **Conflict Detection Example**
 
-![Conflict Detection Example](/media/v1.png)
-
-![Conflict Detection Example 2](/media/v2.png)
-
-**Chat Interface Example**
-
-![Chat Interface Example](/media/chat.png)
+<table>
+  <tr>
+    <td>
+    <p>Contradiction</p>
+    <img src="media/v1.png" alt="Image 3" width="350"/></td>
+    <td>
+    <p>Duplication</p>
+    <img src="media/v2.png" alt="Image 4" width="350"/></td>
+  </tr>
+  <tr>
+    <td>
+    <p>Conflict Analysis</p>
+    <img src="media/v3.png" alt="Image 1" width="350"/></td>
+    <td>
+    <p>Chat Interface</p>
+    <img src="media/chat.png" alt="Image 2" width="350"/></td>
+  </tr>
+</table>
 
 ### Key Features
 
